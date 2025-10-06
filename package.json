@@ -1,7 +1,7 @@
 {
   "name": "back.rocketlog",
   "version": "1.0.0",
-  "main": "index.ts",
+  "main": "server.ts",
   "scripts": {
     "dev": ""
   },
@@ -11,5 +11,8 @@
   "description": "API de entregas de encomendas",
   "dependencies": {
     "express": "^4.19.2"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.21"
   }
 }
