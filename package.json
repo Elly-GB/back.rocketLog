@@ -1,9 +1,9 @@
 {
   "name": "back.rocketlog",
   "version": "1.0.0",
-  "main": "server.ts",
+  "main": "index.js",
   "scripts": {
-    "dev": ""
+    "dev": "tsx watch/server.ts "
   },
   "keywords": [],
   "author": "Gabrielly",
