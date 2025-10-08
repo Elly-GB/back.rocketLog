@@ -38,7 +38,6 @@ model User {
 }
 
 // DELIVERY
-
 model Delivery {
   id String @id @default(uuid())
   userId String @map("user_id")
@@ -47,9 +46,24 @@ model Delivery {
   status DeliveryStatus @default(processing)
 
   user User @relation(fields: [userId], references: [id])
+  logs DeliveryLog[]
 
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime? @updatedAt @map("updated_at")
 
   @@map("deliveries")
+}
+
+// DELIVERY LOG
+model DeliveryLog {
+  id String @id @default(uuid())
+  description String
+  deliveryId String @map("delivery_id")
+
+  delivery Delivery @relation(fields: [deliveryId], references: [id])
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime? @updatedAt @map("updated_at")
+
+  @@map("delivery_logs")
 }
