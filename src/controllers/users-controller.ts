@@ -7,7 +7,7 @@ import { z } from "zod"
 class UsersController {
   async create(request: Request, response: Response) {
     const bodySchema = z.object({
-      name: z.string().trim().min(1),
+      name: z.string().trim().min(2),
       email: z.string().email(),
       password: z.string().min(6),
     })
