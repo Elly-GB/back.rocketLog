@@ -46,6 +46,10 @@ class DeliveryLogsController {
       where: { id: delivery_id },
     })
 
+    if(request.user?.role === "customer" && request.user.id !== delivery?.userId) {
+      throw new AppError("the user can only view their deliveries", 401)
+    }
+
     return response.json(delivery)
   }
 }
