@@ -24,7 +24,11 @@ class DeliveriesController {
 
   // Get / Index
   async index(request: Request, response: Response) {
-    const deliveries = await prisma.delivery.findMany()
+    const deliveries = await prisma.delivery.findMany({
+      include: {
+        user: { select: { name: true, email: true}},
+      }
+    })
 
     return response.json(deliveries)
   }
