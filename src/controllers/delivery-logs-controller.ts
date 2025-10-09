@@ -4,6 +4,7 @@ import { prisma } from "@/database/prisma"
 import { z } from "zod"
 
 class DeliveryLogsController {
+  // Create
   async create(request: Request, response: Response) {
     const bodySchema = z.object({
       delivery_id: z.string().uuid(),
@@ -31,6 +32,21 @@ class DeliveryLogsController {
     })
 
     return response.status(201).json()
+  }
+
+  // Show
+  async show(request: Request, response: Response) {
+    const paramsSchema = z.object({
+      delivery_id: z.string().uuid(),
+    })
+
+    const { delivery_id } = paramsSchema.parse(request.params)
+
+    const delivery = await prisma.delivery.findUnique({
+      where: { id: delivery_id },
+    })
+
+    return response.json(delivery)
   }
 }
 
