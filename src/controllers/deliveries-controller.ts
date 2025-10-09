@@ -3,6 +3,7 @@ import { prisma } from "@/database/prisma"
 import { z } from "zod"
 
 class DeliveriesController {
+  // Post / Create 
   async create(request: Request, response: Response) {
     const bodySchema = z.object({
       user_id: z.string().uuid(),
@@ -20,6 +21,15 @@ class DeliveriesController {
 
     return response.status(201).json()
   }
+
+  // Get / Index
+  async index(request: Request, response: Response) {
+    const deliveries = await prisma.delivery.findMany()
+
+    return response.json(deliveries)
+  }
+
+
 }
 
 export { DeliveriesController }
