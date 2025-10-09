@@ -12,7 +12,7 @@ class DeliveriesStatusController {
       status: z.enum(["processing", "shipped", "delivered"]),
     })
 
-    const { id } = paramsSchema.parse(request.param)
+    const { id } = paramsSchema.parse(request.params)
     const { status } = bodySchema.parse(request.body)
 
     await prisma.delivery.update({
